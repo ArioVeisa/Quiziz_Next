@@ -1,7 +1,6 @@
 'use client';
 
 import { createClient } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -42,7 +41,7 @@ export default function MyResultsPage() {
             ...result,
             quiz_title: result.quizzes?.title,
             total_questions: result.answers?.length || 0
-          }));
+          })) as QuizResult[];
           setResults(resultsWithDetails);
         }
       }

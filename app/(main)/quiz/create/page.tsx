@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 export default function CreateQuizPage() {
     const [title, setTitle] = useState('');
-    const [isPublic, setIsPublic] = useState(true);
+    const [isPublic] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     

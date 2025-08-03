@@ -85,7 +85,7 @@ export default function LoginPage() {
         setEmail('')
         setPassword('')
       }
-    } catch (err) {
+    } catch {
       setModalData({
         title: 'Terjadi Kesalahan',
         message: 'Terjadi kesalahan saat login. Silakan coba lagi.',

@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/client'
 type Question = {
   id: number
   question: string
-  options: string[] | any[]
+  options: string[]
   answer: string
 }
 

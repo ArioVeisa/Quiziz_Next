@@ -107,7 +107,7 @@ export default function QuizResultClient({ quiz, questions, existingResult }: Qu
                       
                       {/* All Options */}
                       <div className="space-y-2">
-                        {Array.isArray(question.options) && question.options.map((option: any, optIndex: number) => {
+                        {Array.isArray(question.options) && question.options.map((option: string, optIndex: number) => {
                           const optionText = typeof option === 'string' 
                             ? option 
                             : option.text || JSON.stringify(option);

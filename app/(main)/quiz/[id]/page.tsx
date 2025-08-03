@@ -1,7 +1,7 @@
 'use client';
 
 import { createClient } from "@/lib/supabase/client";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import { useEffect, useState, useCallback, use } from "react";
 import FormModal from "@/components/FormModal";
 
@@ -9,7 +9,7 @@ import FormModal from "@/components/FormModal";
 type Question = {
   id: number;
   question: string;
-  options: string[] | any[];
+  options: string[];
   answer: string;
 };
 

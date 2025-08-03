@@ -67,7 +67,7 @@ export default function DashboardPage() {
                     const resultsWithQuizTitle = resultsData.map((result: any) => ({
                         ...result,
                         quiz_title: result.quizzes?.title
-                    }));
+                    })) as QuizResult[];
                     setQuizResults(resultsWithQuizTitle);
                 }
             }

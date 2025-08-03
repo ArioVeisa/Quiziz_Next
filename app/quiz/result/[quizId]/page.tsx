@@ -1,6 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import QuizResultClient from "./QuizResultClient";
 
 export default async function QuizResultPage({ params }: { params: Promise<{ quizId: string }> }) {

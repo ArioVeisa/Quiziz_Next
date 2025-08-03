@@ -72,7 +72,7 @@ export default function RegisterPage() {
 
     try {
       // Proses registrasi
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -112,7 +112,7 @@ export default function RegisterPage() {
         setPassword('')
         setName('')
       }
-    } catch (err) {
+    } catch {
       setModalData({
         title: 'Terjadi Kesalahan',
         message: 'Terjadi kesalahan saat mendaftar. Silakan coba lagi.',

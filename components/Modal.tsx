@@ -31,16 +31,7 @@ export default function Modal({ isOpen, onClose, title, message, type = 'info' }
 
   if (!isOpen) return null
 
-  const getIconColor = () => {
-    switch (type) {
-      case 'success':
-        return 'text-green-500'
-      case 'error':
-        return 'text-red-500'
-      default:
-        return 'text-blue-500'
-    }
-  }
+
 
   const getBgColor = () => {
     switch (type) {
