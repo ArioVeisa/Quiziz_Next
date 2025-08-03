@@ -37,9 +37,9 @@ export default function MyResultsPage() {
           .order('created_at', { ascending: false });
         
         if (resultsData) {
-          const resultsWithDetails = resultsData.map((result: any) => ({
+          const resultsWithDetails = resultsData.map((result) => ({
             ...result,
-            quiz_title: result.quizzes?.title,
+            quiz_title: (result.quizzes as any)?.title,
             total_questions: result.answers?.length || 0
           })) as QuizResult[];
           setResults(resultsWithDetails);

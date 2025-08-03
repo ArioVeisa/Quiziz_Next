@@ -64,9 +64,9 @@ export default function DashboardPage() {
                     .order('created_at', { ascending: false });
                 
                 if (resultsData) {
-                    const resultsWithQuizTitle = resultsData.map((result: any) => ({
+                    const resultsWithQuizTitle = resultsData.map((result) => ({
                         ...result,
-                        quiz_title: result.quizzes?.title
+                        quiz_title: (result.quizzes as any)?.title
                     })) as QuizResult[];
                     setQuizResults(resultsWithQuizTitle);
                 }

@@ -54,7 +54,7 @@ export default async function DebugPage() {
                 <div className="text-center py-8">
                     <p className="text-gray-600">Tidak ada data kuis di database.</p>
                     <p className="text-sm text-gray-500 mt-2">
-                        Buat kuis baru di <a href="/quiz/create" className="text-blue-600">halaman create</a>
+                        Buat kuis baru di <Link href="/quiz/create" className="text-blue-600">halaman create</Link>
                     </p>
                 </div>
             )}

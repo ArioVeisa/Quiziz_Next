@@ -224,7 +224,7 @@ export default function QuizPlayer({ quiz }: QuizPlayerProps) {
               // Handle different option formats
               const optionText = typeof option === 'string' 
                 ? option 
-                : option.text || JSON.stringify(option)
+                : String(option)
               
               const isSelected = selectedAnswer === optionText
               

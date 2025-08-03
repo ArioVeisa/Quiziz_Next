@@ -10,20 +10,20 @@ export default function TestAuthPage() {
   const supabase = createClient()
 
   useEffect(() => {
-    checkUser()
-  }, [checkUser])
-
-  const checkUser = async () => {
-    try {
-      const { data: { user }, error } = await supabase.auth.getUser()
-      console.log('User check:', { user, error })
-      setUser(user)
-      setLoading(false)
-    } catch {
-      console.error('Error checking user')
-      setLoading(false)
+    const checkUser = async () => {
+      try {
+        const { data: { user }, error } = await supabase.auth.getUser()
+        console.log('User check:', { user, error })
+        setUser(user)
+        setLoading(false)
+      } catch {
+        console.error('Error checking user')
+        setLoading(false)
+      }
     }
-  }
+    
+    checkUser()
+  }, [supabase])
 
   const testDatabaseAccess = async () => {
     try {
