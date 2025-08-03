@@ -20,7 +20,6 @@ type Quiz = {
 };
 
 export default function QuizDetailPage({ params }: { params: Promise<{ id: string }> }) {
-    const router = useRouter();
     const supabase = createClient();
     
     // Unwrap params using React.use()
@@ -50,8 +49,8 @@ export default function QuizDetailPage({ params }: { params: Promise<{ id: strin
                 return notFound();
             }
             setQuiz(data as Quiz);
-        } catch (err) {
-            console.error('Error fetching quiz:', err);
+        } catch {
+            console.error('Error fetching quiz');
         } finally {
             setLoading(false);
         }
@@ -111,7 +110,7 @@ export default function QuizDetailPage({ params }: { params: Promise<{ id: strin
                 // Refresh data
                 await fetchData();
             }
-        } catch (err) {
+        } catch {
             setFormError('Terjadi kesalahan saat menyimpan pertanyaan.');
         } finally {
             setIsSubmitting(false);

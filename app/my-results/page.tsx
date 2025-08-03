@@ -18,10 +18,9 @@ type QuizResult = {
 
 export default function MyResultsPage() {
   const supabase = createClient();
-  const router = useRouter();
   const [results, setResults] = useState<QuizResult[]>([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -29,7 +28,7 @@ export default function MyResultsPage() {
       if (user) {
         setUser(user);
         
-        const { data: resultsData, error } = await supabase
+        const { data: resultsData } = await supabase
           .from('results')
           .select(`
             id, quiz_id, user_id, score, answers, created_at,

@@ -30,7 +30,7 @@ export default function DashboardPage() {
     const [quizzes, setQuizzes] = useState<Quiz[]>([]);
     const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
     const [copiedCode, setCopiedCode] = useState<string | null>(null);
     const [searchCode, setSearchCode] = useState('');
     const [searchError, setSearchError] = useState<string | null>(null);
@@ -43,7 +43,7 @@ export default function DashboardPage() {
                 setUser(user);
                 
                 // Fetch quizzes
-                const { data: quizzesData, error: quizzesError } = await supabase
+                const { data: quizzesData } = await supabase
                     .from('quizzes')
                     .select('id, title, share_code, created_at')
                     .eq('created_by', user.id)
@@ -54,7 +54,7 @@ export default function DashboardPage() {
                 }
                 
                 // Fetch quiz results
-                const { data: resultsData, error: resultsError } = await supabase
+                const { data: resultsData } = await supabase
                     .from('results')
                     .select(`
                         id, quiz_id, user_id, score, answers, created_at,
@@ -127,7 +127,7 @@ export default function DashboardPage() {
                 // Redirect ke halaman play quiz
                 router.push(`/quiz/play/${searchCode.toUpperCase()}`);
             }
-        } catch (error) {
+        } catch {
             setSearchError('Terjadi kesalahan saat mencari quiz');
         } finally {
             setSearchLoading(false);

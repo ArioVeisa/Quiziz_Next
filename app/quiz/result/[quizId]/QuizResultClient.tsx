@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react'
 import Link from "next/link"
 
 interface QuizResultClientProps {
-  quiz: any
-  questions: any[]
-  existingResult: any
+  quiz: { id: number; title: string; share_code: string; creator_name?: string }
+  questions: { id: number; question: string; options: string[]; answer: string }[]
+  existingResult: { score: number; answers: string[] } | null
 }
 
 export default function QuizResultClient({ quiz, questions, existingResult }: QuizResultClientProps) {
-  const [fallbackResult, setFallbackResult] = useState<any>(null)
+  const [fallbackResult, setFallbackResult] = useState<{ score: number; answers: string[] } | null>(null)
 
   useEffect(() => {
     // Try to get from localStorage if no result in database
@@ -23,8 +23,8 @@ export default function QuizResultClient({ quiz, questions, existingResult }: Qu
             setFallbackResult(parsed)
           }
         }
-      } catch (error) {
-        console.error('Error reading from localStorage:', error)
+      } catch {
+        console.error('Error reading from localStorage')
       }
     }
   }, [existingResult, quiz.id])

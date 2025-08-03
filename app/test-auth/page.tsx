@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 
 export default function TestAuthPage() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
   const [loading, setLoading] = useState(true)
-  const [testResult, setTestResult] = useState<any>(null)
+  const [testResult, setTestResult] = useState<{ type: string; data: any; error?: any } | null>(null)
   const supabase = createClient()
 
   useEffect(() => {
@@ -19,8 +19,8 @@ export default function TestAuthPage() {
       console.log('User check:', { user, error })
       setUser(user)
       setLoading(false)
-    } catch (error) {
-      console.error('Error checking user:', error)
+    } catch {
+      console.error('Error checking user')
       setLoading(false)
     }
   }
@@ -54,9 +54,9 @@ export default function TestAuthPage() {
         console.log('Test select result:', { selectData, selectError })
         setTestResult(prev => ({ ...prev, select: { data: selectData, error: selectError } }))
       }
-    } catch (error) {
-      console.error('Test error:', error)
-      setTestResult({ type: 'error', error })
+    } catch {
+      console.error('Test error')
+      setTestResult({ type: 'error', error: 'Unknown error' })
     }
   }
 
@@ -106,8 +106,8 @@ export default function TestAuthPage() {
         <div className="bg-white rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Instructions</h2>
           <ol className="list-decimal list-inside space-y-2">
-            <li>Make sure you're logged in</li>
-            <li>Click "Test Database Access" to test insert/select operations</li>
+            <li>Make sure you&apos;re logged in</li>
+            <li>Click &quot;Test Database Access&quot; to test insert/select operations</li>
             <li>Check console for detailed logs</li>
             <li>If insert fails, you may need to set up RLS policies in Supabase</li>
           </ol>

@@ -28,7 +28,7 @@ export default function QuizPlayer({ quiz }: QuizPlayerProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
   const [score, setScore] = useState(0)
   const [showResults, setShowResults] = useState(false)
-  const [answeredQuestions, setAnsweredQuestions] = useState<Set<number>>(new Set())
+
   const [userAnswers, setUserAnswers] = useState<string[]>([])
 
   const currentQuestion = quiz.questions[currentQuestionIndex]
@@ -50,8 +50,7 @@ export default function QuizPlayer({ quiz }: QuizPlayerProps) {
       newUserAnswers[currentQuestionIndex] = selectedAnswer
       setUserAnswers(newUserAnswers)
 
-      // Mark question as answered
-      setAnsweredQuestions(prev => new Set([...prev, currentQuestion.id]))
+
 
       // Move to next question or show results
       if (currentQuestionIndex < quiz.questions.length - 1) {
