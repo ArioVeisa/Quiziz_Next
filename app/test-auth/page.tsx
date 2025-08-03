@@ -6,7 +6,12 @@ import { createClient } from '@/lib/supabase/client'
 export default function TestAuthPage() {
   const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
   const [loading, setLoading] = useState(true)
-  const [testResult, setTestResult] = useState<{ type: string; data: unknown; error?: unknown } | null>(null)
+  const [testResult, setTestResult] = useState<{ 
+    type: string; 
+    data: unknown; 
+    error?: unknown;
+    select?: { data: unknown; error: unknown };
+  } | null>(null)
   const supabase = createClient()
 
   useEffect(() => {
@@ -52,11 +57,11 @@ export default function TestAuthPage() {
           .limit(5)
 
         console.log('Test select result:', { selectData, selectError })
-        setTestResult(prev => ({ ...prev, select: { data: selectData, error: selectError } }))
+        setTestResult(prev => prev ? ({ ...prev, select: { data: selectData, error: selectError } }) : null)
       }
     } catch {
       console.error('Test error')
-      setTestResult({ type: 'error', error: 'Unknown error' })
+      setTestResult({ type: 'error', data: null, error: 'Unknown error' })
     }
   }
 
