@@ -39,7 +39,7 @@ export default function MyResultsPage() {
         if (resultsData) {
           const resultsWithDetails = resultsData.map((result) => ({
             ...result,
-            quiz_title: (result.quizzes as any)?.title,
+            quiz_title: (result.quizzes as { title?: string })?.title,
             total_questions: result.answers?.length || 0
           })) as QuizResult[];
           setResults(resultsWithDetails);
